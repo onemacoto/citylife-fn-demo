@@ -1,0 +1,23 @@
+spring: 
+  zipkin:
+    enabled: false
+  datasource:
+    url: jdbc:mysql://localhost:3306/showcaseprovider?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT
+    username: root
+    password: cml13910278560
+    driver-class-name: com.mysql.cj.jdbc.Driver    
+
+eureka:
+  client:
+    serviceUrl: 
+      defaultZone: http://127.0.0.1:1001/eureka
+
+feign:
+  hystrix:
+    enabled: false
+
+citylife: 
+  function: 
+    mdcFilterEnabled: true
+
+
