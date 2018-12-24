@@ -20,8 +20,8 @@ public class ProductController extends AbstractTemplateController<ProductService
   private GetProductListAction getProductListAction;
 
   @Override
-  public ResultEntity<List<Product>> getProductList(final GetProductListRequest request, final String token) {
-    return doAction(getProductListAction, request, token);
+  public ResultEntity<List<Product>> findAll(final GetProductListRequest request, final String version, final String token) {
+    return doAction(version, getProductListAction, request, token);
   }
 
 }

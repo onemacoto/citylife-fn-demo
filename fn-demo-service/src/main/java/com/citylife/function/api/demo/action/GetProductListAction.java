@@ -25,8 +25,6 @@ public class GetProductListAction extends AbstractFunctionAction<GetProductListR
 
   @Override
   public ResultEntity<List<Product>> execute(IActionContext<GetProductListRequest> context) {
-    
-
     List<TblDemoA01> result = tblDemoA01Mapper.selectAll();
     if (CollectionUtils.isEmpty(result)) {
       return ResultEntity.ok(new ArrayList<>());
