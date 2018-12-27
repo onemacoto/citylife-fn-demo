@@ -6,7 +6,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.citylife.function.api.demo.client.fallback.ProductClientFallbackFactory;
+import com.citylife.function.api.demo.client.fallback.UserClientFallbackFactory;
 
 @Configuration
 @EnableFeignClients("com.citylife.function.api.demo.client")
@@ -17,8 +17,8 @@ public class StarterApiAutoConfig {
 
   @Bean
   @ConditionalOnMissingBean
-  public ProductClientFallbackFactory productClientFallbackFactory() {
-    ProductClientFallbackFactory bean = new ProductClientFallbackFactory();
+  public UserClientFallbackFactory productClientFallbackFactory() {
+    UserClientFallbackFactory bean = new UserClientFallbackFactory();
     return bean;
   }
 }
