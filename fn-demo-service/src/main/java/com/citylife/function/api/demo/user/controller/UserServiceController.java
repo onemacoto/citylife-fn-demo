@@ -3,6 +3,8 @@ package com.citylife.function.api.demo.user.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.citylife.common.model.RequestVO;
+import com.citylife.common.model.ResponseVO;
 import com.citylife.common.model.ResultEntity;
 import com.citylife.function.api.demo.action.CreateUserAction;
 import com.citylife.function.api.demo.action.DeleteUserAction;
@@ -16,36 +18,35 @@ import com.citylife.function.core.boot.template.TemplateService;
 @RestController
 public class UserServiceController extends AbstractTemplateController<TemplateService> implements IUserClient {
 
-  @Autowired
-  private GetUserAction getUserAction;
+	@Autowired
+	private GetUserAction getUserAction;
 
-  @Autowired
-  private CreateUserAction createUserAction;
+	@Autowired
+	private CreateUserAction createUserAction;
 
-  @Autowired
-  private UpdateUserAction updateUserAction;
-  
-  @Autowired
-  private DeleteUserAction deleteUserAction;
+	@Autowired
+	private UpdateUserAction updateUserAction;
 
-  @Override
-  public ResultEntity<User> getUser(Long userId, String version, String token) {
-    return doAction(version, getUserAction, userId, token);
-  }
+	@Autowired
+	private DeleteUserAction deleteUserAction;
 
-  @Override
-  public ResultEntity<Long> createUser(User user, String version, String token) {
-    return doAction(version, createUserAction, user, token);
-  }
+	@Override
+	public ResultEntity<ResponseVO<User>> getUser(RequestVO<Long> query, String version, String token) {
+		return doAction(getUserAction, query, version, token);
+	}
 
-  @Override
-  public ResultEntity<Integer> updateUser(User user, String version, String token) {
-    return doAction(version, updateUserAction, user, token);
-  }
+	@Override
+	public ResultEntity<ResponseVO<Long>> createUser(RequestVO<User> user, String version, String token) {
+		return doAction(createUserAction, user, version, token);
+	}
 
-  @Override
-  public ResultEntity<Integer> deleteUser(Long userId, String version, String token) {
-    return doAction(version, deleteUserAction, userId, token);
-  }
+	@Override
+	public ResultEntity<ResponseVO<Integer>> updateUser(RequestVO<User> user, String version, String token) {
+		return doAction(updateUserAction, user, version, token);
+	}
 
+	@Override
+	public ResultEntity<ResponseVO<Integer>> deleteUser(RequestVO<Long> query, String version, String token) {
+		return doAction(deleteUserAction, query, version, token);
+	}
 }
