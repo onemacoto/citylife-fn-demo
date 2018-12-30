@@ -11,10 +11,10 @@ import com.citylife.common.model.ResponseVO;
 import com.citylife.common.model.ResultEntity;
 import com.citylife.function.api.demo.client.config.StarterApiAutoConfig;
 import com.citylife.function.api.demo.client.entity.User;
-import com.citylife.function.api.demo.client.fallback.UserClientFallbackFactory;
+import com.citylife.function.core.api.feign.AbstractClientFallbackFactory;
 import com.citylife.function.core.api.feign.IApiClient;
 
-@FeignClient(name = StarterApiAutoConfig.SERVICE_NAME, fallbackFactory = UserClientFallbackFactory.class)
+@FeignClient(name = StarterApiAutoConfig.SERVICE_NAME, fallbackFactory = IUserClient.UserClientFallbackFactory.class)
 public interface IUserClient extends IApiClient {
 
 	@PostMapping("/{" + VERSION_KEY + "}/user/get")
@@ -32,4 +32,8 @@ public interface IUserClient extends IApiClient {
 	@PostMapping("/{" + VERSION_KEY + "}/user/delete")
 	ResultEntity<ResponseVO<Integer>> deleteUser(@RequestBody RequestVO<Long> query,
 			@PathVariable(VERSION_KEY) String version, @RequestHeader(name = HEADER_TOKEN_KEY) String token);
+	
+	public static class UserClientFallbackFactory extends AbstractClientFallbackFactory<IUserClient> {
+		
+	}
 }

@@ -6,14 +6,15 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.citylife.function.api.demo.client.fallback.UserClientFallbackFactory;
+import com.citylife.function.api.demo.client.IUserClient.UserClientFallbackFactory;
 
 @Configuration
 @EnableFeignClients("com.citylife.function.api.demo.client")
-@ConditionalOnExpression("#{!environment['spring.application.name'].equals('"+ StarterApiAutoConfig.SERVICE_NAME +"')}")
+@ConditionalOnExpression("#{!environment['spring.application.name'].equals('" + StarterApiAutoConfig.SERVICE_NAME
+		+ "')}")
 public class StarterApiAutoConfig {
 
-  public static final String SERVICE_NAME = "fn-demo";
+	public static final String SERVICE_NAME = "fn-demo";
 
   @Bean
   @ConditionalOnMissingBean
