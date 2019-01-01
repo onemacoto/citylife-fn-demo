@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 import com.citylife.common.model.RequestVO;
 import com.citylife.common.model.ResponseVO;
 import com.citylife.common.model.ResultEntity;
+import com.citylife.common.model.builder.ResponseVOBuilder;
 import com.citylife.function.api.demo.client.entity.User;
 import com.citylife.function.api.demo.domain.dao.TblUserMapper;
 import com.citylife.function.api.demo.domain.model.TblUser;
@@ -22,7 +23,7 @@ public class GetUserAction extends AbstractFunctionAction<RequestVO<Long>, Respo
   @Override
   public ResultEntity<ResponseVO<User>> execute(IActionContext<RequestVO<Long>> context) {
     TblUser result = tblUserMapper.selectByPrimaryKey(context.getParameter().getData());
-    return ResultEntity.ok(new ResponseVO<>(getBeanMapper().map(result, User.class)));
+    return ResultEntity.ok(ResponseVOBuilder.build(getBeanMapper().map(result, User.class)));
   }
 
 }

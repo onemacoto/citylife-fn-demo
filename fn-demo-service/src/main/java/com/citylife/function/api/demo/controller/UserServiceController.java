@@ -1,4 +1,4 @@
-package com.citylife.function.api.demo.user.controller;
+package com.citylife.function.api.demo.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;

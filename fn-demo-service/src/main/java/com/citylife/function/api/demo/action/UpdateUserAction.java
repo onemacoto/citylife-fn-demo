@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 import com.citylife.common.model.RequestVO;
 import com.citylife.common.model.ResponseVO;
 import com.citylife.common.model.ResultEntity;
+import com.citylife.common.model.builder.ResponseVOBuilder;
 import com.citylife.function.api.demo.client.entity.User;
 import com.citylife.function.api.demo.domain.dao.TblUserMapper;
 import com.citylife.function.api.demo.domain.model.TblUser;
@@ -23,7 +24,7 @@ public class UpdateUserAction  extends AbstractFunctionAction<RequestVO<User>, R
   @Override
   public ResultEntity<ResponseVO<Integer>> execute(IActionContext<RequestVO<User>> context) {
     int result = tblUserMapper.updateByPrimaryKey(getBeanMapper().map(context.getParameter(), TblUser.class));
-    return ResultEntity.ok(new ResponseVO<>(result));
+    return ResultEntity.ok(ResponseVOBuilder.build(result));
   }
 
 }
